@@ -1,26 +1,35 @@
 const express = require('express');
 const app = express();
-const port = 3000;
-
 let route = require('../routes/routes.js');
+const cors = require('cors');
+require('../db/connection.js')
+require('dotenv').config();
 
-app.use('/task-manager', route)
+const port = process.env.PORT
+// app.use(cors)
+app.use('/api', route)
 
 app.listen(port, function (err) {
     if (err) {
-        console.log("something happening!");
-        return 0;
+        throw (err)
     }
-    console.log("server running on port ", port)
+    console.log('server running on port', port)
 })
+
+
+
+
+
 
 /*
 what i do?
--create a routing apps
--determine the path routing 
-task-manager/
-task-manager/:id/
-task-manager/:id/
+-create a routing apps done
+-determine the path routing done
+api/
+api/:id/
+api/:id/
+-connect database
+-create model
 -make a controller callback to the route
 
 */
